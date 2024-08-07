@@ -6,7 +6,7 @@ namespace SpiralPackages\Profiler\Converter;
 
 final class NullConverter implements ConverterInterface
 {
-    public function convert(array $data): array
+    public function convert(array $data)
     {
         return $data;
     }

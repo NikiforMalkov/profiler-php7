@@ -4,19 +4,33 @@ declare(strict_types=1);
 
 namespace SpiralPackages\Profiler\Storage;
 
-use Symfony\Contracts\HttpClient\HttpClientInterface;
 use SpiralPackages\Profiler\Converter\ConverterInterface;
 use SpiralPackages\Profiler\Converter\NullConverter;
 
 final class WebStorage implements StorageInterface
 {
+    private  CurlHttp $httpClient;
+    private  string $endpoint;
+    private  string $method = 'POST';
+    private array $options = [];
+    private  ConverterInterface $converter;
+    
     public function __construct(
-        private readonly HttpClientInterface $httpClient,
-        private readonly string $endpoint,
-        private readonly string $method = 'POST',
-        private array $options = [],
-        private readonly ConverterInterface $converter = new NullConverter(),
+        CurlHttp $httpClient,
+        string $endpoint,
+        string $method = 'POST',
+        $options = [],
+        $converter = null
     ) {
+        $this->httpClient = $httpClient;
+        $this->endpoint = $endpoint;
+        $this->method = $method;
+        $this->options = $options;
+        if (!$converter) {
+            $this->converter = new NullConverter();
+        } else {
+            $this->converter = $converter;
+        }
     }
 
     public function store(string $appName, array $tags, \DateTimeInterface $date, array $data): void

@@ -12,5 +12,5 @@ interface ConverterInterface
     /**
      * @param TTrace $data
      */
-    public function convert(array $data): mixed;
+    public function convert(array $data);
 }
