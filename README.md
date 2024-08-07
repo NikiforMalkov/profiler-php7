@@ -18,7 +18,7 @@ under XHProf.
 
 Make sure that your server is configured with following PHP version and extensions:
 
-- PHP 8.1+
+- PHP 7.3 and maybe lover
 - [XHProf](http://pecl.php.net/package/xhprof) ext or its forks ([Uprofiler](https://github.com/FriendsOfPHP/uprofiler)
   , [Tideways](https://github.com/tideways/php-profiler-extension)).
 
